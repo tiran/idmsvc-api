@@ -1,0 +1,13 @@
+---
+stages:
+  - validate
+
+validate:
+  tags:
+    - shared
+  image: registry.access.redhat.com/ubi9/python-311:latest
+  stage: validate
+  needs: []
+  script:
+    - make validate
+    - make openapi-sort
