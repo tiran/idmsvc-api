@@ -25,19 +25,19 @@ $(VALIDATOR): $(PYTHON_VENV)
 
 .PHONY: validate
 validate: $(VALIDATOR)
-	$(VALIDATOR) api/public.openapi.yaml
-	$(VALIDATOR) api/internal.openapi.yaml
-	$(VALIDATOR) api/metrics.openapi.yaml
+	$(VALIDATOR) public.openapi.yaml
+	$(VALIDATOR) internal.openapi.yaml
+	$(VALIDATOR) metrics.openapi.yaml
 
 .PHONY: openapi-sort
 openapi-sort: $(PYTHON_VENV)
-	$(PYTHON_VENV) yamlsort.py api/*.yaml
+	$(PYTHON_VENV) yamlsort.py *.openapi.yaml
 
 .PHONY: swagger-editor
 swagger-editor:
 	podman run --rm --detach \
 	  -p 8080:8080 \
-	  -v $(shell pwd)/api:/api:ro,Z \
+	  -v $(shell pwd):/api:ro,Z \
 	  --name $(SWAGGER_CONTAINER) \
 	  -e SWAGGER_FILE=/api/public.openapi.yaml \
 	  docker.io/swaggerapi/swagger-editor

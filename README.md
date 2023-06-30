@@ -11,7 +11,7 @@ The OpenAPI schemas are used by the projects
 Add submodule to a repository (replace `PATH`)
 
 ```
-git submodule add https://gitlab.cee.redhat.com/identity-management/idmocp/idm-domains-api.git PATH
+git submodule add https://gitlab.cee.redhat.com/identity-management/idmocp/idm-domains-api.git api
 ```
 
 Update remote changes of a submodule
