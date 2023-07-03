@@ -660,7 +660,7 @@ components:
             x-rh-ipa-hcc:
                 type: defs
             example: rhel-idm
-        Error:
+        ErrorInfo:
             title: Error information
             type: object
             required:
@@ -710,7 +710,7 @@ components:
                     description: Error objects provide additional information about problems encountered while performing an operation.
                     type: array
                     items:
-                        $ref: '#/components/schemas/Error'
+                        $ref: '#/components/schemas/ErrorInfo'
                     minItems: 1
                     readOnly: true
                     example: >
