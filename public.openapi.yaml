@@ -516,6 +516,8 @@ components:
                     $ref: '#/components/schemas/DomainType'
                 rhel-idm:
                     $ref: '#/components/schemas/DomainIpa'
+                signing_keys:
+                    $ref: '#/components/schemas/SigningKeys'
             x-rh-ipa-hcc:
                 name: IPADomainResponse
                 type: response
@@ -841,6 +843,8 @@ components:
                             example: '[{"fqdn": "server1.mydomain.example"}, {"fqdn": "server2.mydomain.example"}]'
                         realm_name:
                             $ref: '#/components/schemas/RealmName'
+                token:
+                    $ref: '#/components/schemas/HostToken'
             x-rh-ipa-hcc:
                 name: HostConfResponse
                 type: response
@@ -865,6 +869,12 @@ components:
             x-rh-ipa-hcc:
                 type: defs
             example: f0468001-7632-4d3f-afd2-770c93825adf
+        HostToken:
+            title: Host Token
+            description: A serialized JWS token or JWT to authenticate a host registration request.
+            type: string
+            x-rh-ipa-hcc:
+                type: defs
         ListDomainsData:
             title: Root Type for ListDomainsData
             description: The data listed for the domains.
@@ -1042,6 +1052,28 @@ components:
                     format: date-time
                 secret:
                     type: string
+        SigningKeys:
+            title: Signing keys
+            description: Serialized JWKs with revocation information
+            type: object
+            required:
+                - keys
+            additionalProperties: false
+            properties:
+                keys:
+                    description: An array of serialized JSON Web Keys (JWK strings)
+                    type: array
+                    items:
+                        type: string
+                    minItems: 1
+                revoked_kids:
+                    description: An array of revoked key identifiers (JWK kid)
+                    type: array
+                    items:
+                        type: string
+                    minItems: 1
+            x-rh-ipa-hcc:
+                type: defs
         SubscriptionManagerId:
             title: Subscription manager id
             description: A Red Hat Subcription Manager ID of a RHEL host.
