@@ -10,13 +10,13 @@ The OpenAPI schemas are used by the projects
 
 Add submodule to a repository (replace `PATH`)
 
-```
+```sh
 git submodule add https://gitlab.cee.redhat.com/identity-management/idmocp/idm-domains-api.git api
 ```
 
 Update remote changes of a submodule
 
-```
+```sh
 git submodule update --remote
 ```
 
@@ -25,13 +25,13 @@ to update a submodule to a specific version.
 
 Clone a repository with submodules
 
-```
+```sh
 git clone --recurse-submodules
 ```
 
 Initialize, fetch, and update submodules of an existing checkout
 
-```
+```sh
 git submodule update --init
 ```
 

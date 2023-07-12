@@ -11,6 +11,7 @@ SWAGGER_CONTAINER = swagger-editor
 all:
 	$(MAKE) openapi-sort
 	$(MAKE) validate
+	$(MAKE) generate-json
 
 .PHONY: clean
 clean:
@@ -46,3 +47,9 @@ swagger-editor:
 .PHONY: swagger-editor-stop
 swagger-editor-stop:
 	podman stop $(SWAGGER_CONTAINER)
+
+.PHONY: generate-json
+generate-json: public.openapi.json internal.openapi.json metrics.openapi.json
+
+%.openapi.json: %.openapi.yaml $(PYTHON_VENV)
+	$(PYTHON_VENV) yaml2json.py $< $@
