@@ -801,7 +801,6 @@ components:
                 - domain_id
                 - domain_name
                 - domain_type
-                - inventory_id
                 - rhel-idm
             additionalProperties: false
             properties:
@@ -815,8 +814,6 @@ components:
                     $ref: '#/components/schemas/DomainName'
                 domain_type:
                     $ref: '#/components/schemas/DomainType'
-                inventory_id:
-                    $ref: '#/components/schemas/HostId'
                 rhel-idm:
                     type: object
                     required:
