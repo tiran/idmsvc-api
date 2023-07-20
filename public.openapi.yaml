@@ -775,15 +775,7 @@ components:
                     description: List of auto-enrollment enabled servers for this domain.
                     type: array
                     items:
-                        type: object
-                        required:
-                            - fqdn
-                        additionalProperties: false
-                        properties:
-                            fqdn:
-                                $ref: '#/components/schemas/Fqdn'
-                            location:
-                                $ref: '#/components/schemas/LocationName'
+                        $ref: '#/components/schemas/HostConfIpaServer'
                     example: '[{"fqdn": "server1.mydomain.example"}, {"fqdn": "server2.mydomain.example"}]'
                 realm_name:
                     $ref: '#/components/schemas/RealmName'
@@ -795,6 +787,20 @@ components:
                 server_list:
                     - fqdn: server1.mydomain.example
                     - fqdn: server2.mydomain.example
+        HostConfIpaServer:
+            description: Auto-enrollment enabled server for this domain.
+            type: object
+            required:
+                - fqdn
+            additionalProperties: false
+            properties:
+                fqdn:
+                    $ref: '#/components/schemas/Fqdn'
+                location:
+                    $ref: '#/components/schemas/LocationName'
+            x-rh-ipa-hcc:
+                type: defs
+            example: '{"fqdn": "server1.mydomain.example"}'
         HostConfResponseSchema:
             title: Root Type for HostConfResponse
             description: >-
