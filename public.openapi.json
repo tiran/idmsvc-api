@@ -1038,7 +1038,9 @@
         "description": "Options for ipa domains",
         "type": "object",
         "required": [
-          "cabundle"
+          "cabundle",
+          "enrollment_servers",
+          "realm_name"
         ],
         "additionalProperties": false,
         "properties": {
@@ -1068,6 +1070,9 @@
           "realm_name": {
             "$ref": "#/components/schemas/RealmName"
           }
+        },
+        "x-rh-ipa-hcc": {
+          "type": "defs"
         },
         "example": {
           "cabundle": "base64",
@@ -1110,41 +1115,7 @@
             "$ref": "#/components/schemas/DomainType"
           },
           "rhel-idm": {
-            "type": "object",
-            "required": [
-              "cabundle",
-              "enrollment_servers",
-              "realm_name"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "cabundle": {
-                "$ref": "#/components/schemas/CaCertBundle"
-              },
-              "enrollment_servers": {
-                "description": "List of auto-enrollment enabled servers for this domain.",
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "required": [
-                    "fqdn"
-                  ],
-                  "additionalProperties": false,
-                  "properties": {
-                    "fqdn": {
-                      "$ref": "#/components/schemas/Fqdn"
-                    },
-                    "location": {
-                      "$ref": "#/components/schemas/LocationName"
-                    }
-                  }
-                },
-                "example": "[{\"fqdn\": \"server1.mydomain.example\"}, {\"fqdn\": \"server2.mydomain.example\"}]"
-              },
-              "realm_name": {
-                "$ref": "#/components/schemas/RealmName"
-              }
-            }
+            "$ref": "#/components/schemas/HostConfIpa"
           },
           "token": {
             "$ref": "#/components/schemas/HostToken"
