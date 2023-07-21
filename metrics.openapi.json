@@ -9,7 +9,7 @@
   "servers": [
     {
       "description": "Use for Development",
-      "url": "/"
+      "url": "/metrics"
     }
   ],
   "paths": {
