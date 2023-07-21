@@ -550,6 +550,7 @@ components:
             type: object
             required:
                 - ca_certs
+                - locations
                 - realm_domains
                 - realm_name
                 - servers
@@ -581,15 +582,10 @@ components:
                     description: List of allowed locations
                     type: array
                     items:
-                        type: object
-                        required:
-                            - name
-                        additionalProperties: false
-                        properties:
-                            name:
-                                $ref: '#/components/schemas/LocationName'
-                            description:
-                                type: string
+                        $ref: '#/components/schemas/Location'
+                    minItems: 0
+                    example: >-
+                        [{"name":"boston","description":"Boston data center"}]
                 realm_domains:
                     description: List of realm associated to the IPA domain.
                     type: array
@@ -922,6 +918,20 @@ components:
                     previous: /api/idm/v1/domains?limit=10&offset=0
                 meta:
                     count: 1
+        Location:
+            title: Location record
+            description: RHEL IdM server location
+            type: object
+            required:
+                - name
+            additionalProperties: false
+            properties:
+                name:
+                    $ref: '#/components/schemas/LocationName'
+                description:
+                    type: string
+            x-rh-ipa-hcc:
+                type: defs
         LocationName:
             title: Location identifier (IPA location, AD site)
             description: A location identifier (lower-case DNS label)
