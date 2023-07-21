@@ -8,7 +8,7 @@ info:
     version: 0.0.1
 servers:
     - description: Use for Development
-      url: /
+      url: /metrics
 paths:
     /:
         get:

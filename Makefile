@@ -4,6 +4,7 @@ PYTHON = python3
 VENV = $(srcdir)/.venv
 PYTHON_VENV = $(VENV)/bin/python
 VALIDATOR = $(VENV)/bin/openapi-spec-validator
+NODE_BIN = node_modules/.bin
 
 SWAGGER_CONTAINER = swagger-editor
 
@@ -11,6 +12,7 @@ SWAGGER_CONTAINER = swagger-editor
 all:
 	$(MAKE) openapi-sort
 	$(MAKE) validate
+	$(MAKE) vacuum
 	$(MAKE) generate-json
 
 .PHONY: clean
@@ -24,6 +26,10 @@ $(PYTHON_VENV):
 
 $(VALIDATOR): $(PYTHON_VENV)
 
+$(NODE_BIN)/%: package.json package-lock.json
+	npm install
+	touch $(NODE_BIN)/*
+
 .PHONY: validate
 validate: $(VALIDATOR)
 	$(VALIDATOR) public.openapi.yaml
@@ -33,6 +39,12 @@ validate: $(VALIDATOR)
 .PHONY: openapi-sort
 openapi-sort: $(PYTHON_VENV)
 	$(PYTHON_VENV) yamlsort.py *.openapi.yaml
+
+.PHONY: vacuum
+vacuum: $(NODE_BIN)/vacuum
+	npm run vacuum:lint public.openapi.yaml
+	npm run vacuum:lint internal.openapi.yaml
+	npm run vacuum:lint metrics.openapi.yaml
 
 .PHONY: swagger-editor
 swagger-editor:
