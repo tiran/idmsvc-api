@@ -3,7 +3,7 @@
   "info": {
     "title": "Sample Todo API",
     "description": "Example of API design first approach and using golang stack (viper+echo+gorm+confluent+cleanarchitecture)",
-    "termsOfService": "https://console.redhat.com/api/hmsidm/v1",
+    "termsOfService": "https://console.redhat.com/api/idmsvc/v1",
     "version": "0.0.1"
   },
   "servers": [

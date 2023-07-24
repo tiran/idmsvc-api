@@ -1,17 +1,17 @@
 ---
 openapi: 3.0.2
 info:
-    title: hmsidm-backend
-    description: Backend API for hmsidm service
+    title: idmsvc-backend
+    description: Backend API for Directory & Domain Services
     contact: {}
     version: 1.0.0
 servers:
     - description: Production
-      url: /api/hmsidm/v1
+      url: /api/idmsvc/v1
     - description: Beta
-      url: /beta/api/hmsidm/v1
+      url: /beta/api/idmsvc/v1
     - description: Preview
-      url: /preview/api/hmsidm/v1
+      url: /preview/api/idmsvc/v1
 paths:
     /domains:
         description: It store the necessary information about a domain that will let manage them
@@ -698,7 +698,7 @@ components:
                 type: defs
         Errors:
             title: Root Type for ErrorResponse
-            description: General error response returned by the hmsidm API
+            description: General error response returned by the idmsvc API
             type: object
             required:
                 - errors
