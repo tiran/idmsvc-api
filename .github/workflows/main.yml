@@ -1,0 +1,24 @@
+---
+name: Validate
+
+on:
+  - push
+  - pull_request
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: "ubuntu-latest"
+    container: registry.access.redhat.com/ubi9/python-311:latest
+    steps:
+      - uses: "actions/checkout@v3"
+      - run: |
+          make validate
+      - run: |
+          make openapi-sort
+          # touch all yaml files to ensure generate-json runs
+          touch *.yaml
+          make generate-json
+          git diff --exit-code
